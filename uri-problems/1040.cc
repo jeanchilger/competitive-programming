@@ -30,7 +30,6 @@ int main() {
         } else if (nAverage <= 4.9){
             printf("Aluno reprovado.\nMedia final: %.1lf\n", nAverage);
         }
-
     }
 
     return 0;
