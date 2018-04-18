@@ -7,8 +7,6 @@ int main() {
 
     int Q, X, Y;
 
-    for ()
-
 
     return 0;
 }
