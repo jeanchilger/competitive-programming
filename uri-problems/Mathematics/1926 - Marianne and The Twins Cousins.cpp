@@ -1,42 +1,47 @@
 #include <iostream>
+#include <math.h>
+#include <vector>
 
 using namespace std;
 
+bool isPrime(int z) {
+    int square = sqrt(z);
+    for (int d = 2; d <= square; d++) {
+        if (z % d == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
 
-    bool primes[1000000];
-    primes[0] = true;
-    for (int d = 2; d <= 1000; d++) {
-        if (!primes[d-1]) {
-            for (int n = d*d; n <= 1000000; n+=d) {
-                primes[n-1] = true;
-            }
+    vector<int> primes;
+
+    for (int n=2; n < 1000000; n++) {
+        if (isPrime(n)) {
+            primes.push_back(n);
         }
     }
 
-    int Q, X, Y, twinPrimes, lastTwin;
+    int size = primes.size();
 
-    //cin >> Q;
-    Q = 100000;
+    int Q, X, Y, twinPrimes;
+
+    cin >> Q;
 
     for (int i=0; i < Q; i++) {
 
         twinPrimes = 0;
-        lastTwin = 0;
 
-        //cin >> X >> Y;
-        X = 1;
-        Y = 1000000;
-        for (int j=X; j <= Y; j++) {
+        cin >> X >> Y;
 
-            if (!(primes[j-1]) && !(primes[j+1])) {
-                if ((j-1 != lastTwin) && ((j+1) < Y)) {
+        for (int j=1; j <= size; j++) {
+            if (primes[j] > Y) break;
+            if (primes[j] >= X) {
+                if ((primes[j] - primes[j-1] == 2) || (primes[j] + 2 == primes[j+1])) {
                     twinPrimes++;
-                    lastTwin = j+1;
                 }
-
-                j++;
-                twinPrimes++;
             }
         }
 
