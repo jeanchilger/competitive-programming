@@ -25,7 +25,7 @@ int main() {
             twinPrimes.push_back(6 * n + 1);
         }
     }
-    
+
     int size = twinPrimes.size();
     int q, x, y, twinCount;
 
@@ -36,6 +36,11 @@ int main() {
         twinCount = 0;
 
         cin >> x >> y;
+        if (x > y) {
+            int temp = x;
+            x = y;
+            y = temp;
+        }
         for (int j=0; j <= size; j++) {
             if (twinPrimes[j] > y) break;
             if (twinPrimes[j] >= x) {
