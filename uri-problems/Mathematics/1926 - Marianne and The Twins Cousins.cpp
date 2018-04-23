@@ -19,7 +19,9 @@ int main() {
     vector<int> twinPrimes;
 
     twinPrimes.push_back(3);
-    for (int n = 1; n < 166667; n++) {
+    int max = (1000000 / 6) + 1;
+    cout << max << " ============\n";
+    for (int n = 1; n < max; n++) {
         if (isPrime(6 * n - 1) && isPrime(6 * n + 1)) {
             twinPrimes.push_back(6 * n - 1);
             twinPrimes.push_back(6 * n + 1);
