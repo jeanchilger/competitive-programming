@@ -16,36 +16,34 @@ bool isPrime(int z) {
 
 int main() {
 
-    vector<int> primes;
+    vector<int> twinPrimes;
 
-    for (int n=2; n < 1000000; n++) {
-        if (isPrime(n)) {
-            primes.push_back(n);
+    twinPrimes.push_back(3);
+    for (int n = 1; n < 166667; n++) {
+        if (isPrime(6 * n - 1) && isPrime(6 * n + 1)) {
+            twinPrimes.push_back(6 * n - 1);
+            twinPrimes.push_back(6 * n + 1);
         }
     }
+    
+    int size = twinPrimes.size();
+    int q, x, y, twinCount;
 
-    int size = primes.size();
+    cin >> q;
 
-    int Q, X, Y, twinPrimes;
+    for (int i=0; i < q; i++) {
 
-    cin >> Q;
+        twinCount = 0;
 
-    for (int i=0; i < Q; i++) {
-
-        twinPrimes = 0;
-
-        cin >> X >> Y;
-
-        for (int j=1; j <= size; j++) {
-            if (primes[j] > Y) break;
-            if (primes[j] >= X) {
-                if ((primes[j] - primes[j-1] == 2) || (primes[j] + 2 == primes[j+1])) {
-                    twinPrimes++;
-                }
+        cin >> x >> y;
+        for (int j=0; j <= size; j++) {
+            if (twinPrimes[j] > y) break;
+            if (twinPrimes[j] >= x) {
+                    twinCount++;
             }
         }
 
-        cout << twinPrimes << endl;
+        cout << twinCount << endl;
     }
     return 0;
 }
