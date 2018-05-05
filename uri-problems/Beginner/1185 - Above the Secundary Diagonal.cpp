@@ -4,25 +4,28 @@ using namespace std;
 
 int main(){
 
-    double m[12][12];
-    int l;
+    float m[12][12];
     float sum = 0;
-    char t;
-    cin >> l;
-    cin >> t;
+    int count = 0;
+    int max = 12;
+    char o;
+
+    cin >> o;
 
     for (int i = 0; i < 12; i++) {
-
+        max--;
         for (int j = 0; j < 12; j++) {
             cin >> m[i][j];
-            if (i == l) {
+
+            if (j < max) {
                 sum += m[i][j];
+                count++;
             }
         }
     }
 
-    if (t == 'M') {
-        printf("%.1lf\n", (sum/12.0));
+    if (o == 'M') {
+        printf("%.1lf\n", (sum/count));
     } else {
         printf("%.1lf\n", sum);
     }

@@ -4,18 +4,20 @@ using namespace std;
 
 int main(){
 
-    double m[12][12];
-    int l;
+    float m[12][12];
     float sum = 0;
+    int c;
     char t;
-    cin >> l;
+
+    cin >> c;
     cin >> t;
 
     for (int i = 0; i < 12; i++) {
 
         for (int j = 0; j < 12; j++) {
             cin >> m[i][j];
-            if (i == l) {
+
+            if (j == c) {
                 sum += m[i][j];
             }
         }
