@@ -10,7 +10,7 @@ int visited[64];
 vector<vector<int> > components;
 
 void dfs(vector<vector<int> > graph, int vertex, int compId) {
-    // printf("sas %d\n", vertex);
+
     visited[vertex] = 1;
     components[compId].push_back(vertex);
     for (int v = 0; v < graph[vertex].size(); v++) {
@@ -19,6 +19,7 @@ void dfs(vector<vector<int> > graph, int vertex, int compId) {
         }
     }
 }
+
 
 int main() {
 
@@ -36,7 +37,7 @@ int main() {
 
         vector<vector<int> > graph (v, vector<int>());
         components.clear();
-        memset(visited, 0, sizeof(visited));
+        memset(visited, 0, sizeof(visited)); //if 0: all 0, if -1: all 1;
 
         for (int i = 0; i < e; i++) {
             scanf(" %c %c", &v0, &v1);
@@ -62,7 +63,9 @@ int main() {
             }
         }
 
+
         for (int i = 0; i < id; i++) {
+            sort(components[i].begin(), components[i].end());
             for (int j = 0; j < components[i].size(); j++) {
                 printf("%c,", components[i][j]+'a');
             }
