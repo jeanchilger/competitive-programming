@@ -1,38 +1,32 @@
-#include <algorithm>
-#include <iterator>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
 
+    int n, m, r, t;
 
-    int n, m, t;
-
-    while (1) {
+    while (true) {
         cin >> n >> m;
         if (!n && !m) break;
 
-        vector<int> tickets;
-        vector<int> fakes;
-        int fake = 0;
+        int tick[n] = {0};
+        r = 0;
 
         for (int i = 0; i < m; i++) {
             cin >> t;
 
-            if (!(find(begin(tickets), end(tickets), t) != end(tickets))) {
-                tickets.push_back(t);
-
-            } else {
-                if (!(find(begin(fakes), end(fakes), t) != end(fakes))) {
-                    fake++;
-                    fakes.push_back(t);
-                }
+            if (tick[t-1] == 1) {
+                r++;
+                tick[t-1] = -1;
+            } else if (tick[t-1] == 0){
+                tick[t-1] = 1;
             }
+
         }
 
-        cout << fake << endl;
+        cout << r << endl;
+
     }
 
     return 0;

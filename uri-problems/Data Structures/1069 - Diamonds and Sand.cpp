@@ -20,11 +20,7 @@ int main() {
         for (char x : input) {
             if (x == '<') checker.push(x);
             else if (x == '>') {
-                if (checker.empty()) {
-                    
-
-                } else if (x == '>') {
-                    // cout << "TOP " << checker.top() << endl;
+                if (!checker.empty()) {
                     checker.pop();
                     diamonds++;
                 }
