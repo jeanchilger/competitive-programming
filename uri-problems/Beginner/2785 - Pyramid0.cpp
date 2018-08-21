@@ -10,7 +10,7 @@ vector<int> cache; // cache[i] = guarda a soma até aquela linha (não a soma da
 void solve(int i, int j, int qntd, int max) {
 
 	int aux = 0;
-	cout << "mtrx[" << i << "][" << j << "] = " << mtrx[i][j] << endl;
+	// cout << "mtrx[" << i << "][" << j << "] = " << mtrx[i][j] << endl;
 	for (int j1 = j; j1 < j + qntd; j1++) {
 		aux += mtrx[i][j1];
 	}
@@ -22,7 +22,7 @@ void solve(int i, int j, int qntd, int max) {
 	if (i == 0) {
 		return;
 	}
-	cout << "SAS\n";
+	// cout << "SAS\n";
 	solve(i-1, j, qntd-1, max);
 	solve(i-1, j+1, qntd-1, max);
 }
@@ -43,10 +43,11 @@ int main() {
 
 	solve(n-1, 0, n, n);
 
-	for (auto x : cache) {
-		cout << x << endl;
+	for (int x : cache) {
+		sum += x;
 	}
 
+	cout << sum << "\n";
 
 	return 0;
 }

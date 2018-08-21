@@ -1,30 +1,30 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
-int sum = 0;
 vector<vector<int> > mtrx;
-vector<int> cache; // cache[i] = guarda a soma até aquela linha (não a soma da linha isolada)
+vector<vector<int> > cache; // cache --> retorno de solve (não precisa significar algo lógico)
+int n;
 
-void solve(int i, int j, int qntd, int max) {
+int solve(int i, int j) { // qntd = i
 
-	int aux = 0;
-	// cout << "mtrx[" << i << "][" << j << "] = " << mtrx[i][j] << endl;
-	for (int j1 = j; j1 < j + qntd; j1++) {
-		aux += mtrx[i][j1];
-	}
-
-	// cout << "aux: " << aux << endl;
-	if (cache[i-1] + aux < cache[i]) {
-		// cout << "cache i-1: " << cache[i-1] << " cache i: " << cache[i] << endl;
-		cache[i] = cache[i-1] + aux;
+	if (cache[i][j] != -1) {
+		return cache[i][j];
 	}
 
 	if (i == 0) {
-		cout << j << endl;
-		return;
+		return 0;
 	}
+
+	int aux = 0; // soma da linha apartir do elemento atual
+
+	for (int j1 = j; j1 < j + i; j1++) {
+		aux += mtrx[i][j1];
+	}
+
+	if ()
 
 	solve(i-1, j, qntd-1, max);
 	solve(i-1, j+1, qntd-1, max);
@@ -32,11 +32,10 @@ void solve(int i, int j, int qntd, int max) {
 
 int main() {
 
-	int n;
 	cin >> n;
 
 	mtrx.assign(n, vector<int>(n));
-	cache.assign(n, 99999);
+	cache.assign(n, vector<int>(n, -1));
 	cache.at(n-1) = 0;
 
 	for (int i = 0; i < n; i++) {
@@ -48,11 +47,11 @@ int main() {
 	for (int j = 0; j < n; j++) {
 		cache[n-1] += mtrx[n-1][j];
 	}
-	solve(n-2, 0, n-1, n);
-	solve(n-2, 1, n-1, n);
+
+	int res = min(solve(n-2, 0), solve(n-2, 1));
 
 	for (auto x : cache) {
-		// cout << x << endl;
+		cout << x << endl;
 	}
 
 
