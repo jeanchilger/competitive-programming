@@ -12,7 +12,8 @@ int n, l, h;
 int mks;
 int sum = 0;
 
-int solve (int i) {
+int solve () {
+
     
 }
 
@@ -33,13 +34,8 @@ int main () {
         marked.push_back(val);
     }
 
-    int r = -9999;
-    for (int i = 0; i < n; i++) {
-        mks = 0; // marked elements that were summed
-        // r = max(r, solve(i));
-    }
-
-    cout << r << "\n";
+    mks = 0;
+    cout << solve() << "\n";
 
     return 0;
 }
