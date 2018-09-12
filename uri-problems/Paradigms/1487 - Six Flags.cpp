@@ -10,40 +10,42 @@ vector<int> duration; // weight
 int tw;
 
 int s(int n, int t) { // n = weight; t = value
-    if (n == 0 || t == 0) return 0;
+    if (n == -1 || t == 0) return 0;
 
-    if (memo[n][t] != -999) return memo[n][t];
+    if (memo[n][t] != -1) return memo[n][t];
+    if (duration[n] > t) {
+        return memo[n][t] = s(n - 1, t);
 
-    if (duration[n] > tw) {
-        memo[n][t] = 0;
-        return s(n, t-1); // TODO Verify if isn't t+1 instead of t-1
-
-    } // else
-
-    memo[n][t] = max(s(n-1, t), s(n-1, t-duration[t]) + score[n]);
-    return memo[n][t];
-
+    } 
+    return memo[n][t] = max(s(n - 1, t), 
+					        score[n] + s(n, t - duration[n]));
 }
 
 int main(){
-    int n,  d, p;
+    int n, d, p;
+    int count = 1;
 
     while(1) {
-        cin >> n >> tw; // n = inputs; tw = capacity
+        cin >> n >> tw;
         if (!n && !tw) break;
 
-        memo.assign(tw+1, vector<int>(tw+1, -999));
+        memo.assign(n, vector<int>(tw+1, -1));
 
         for (int i = 0; i < n; i++) {
             cin >> d >> p;
             duration.push_back(d);
             score.push_back(p);
         }
-
-        cout << s(n, tw);
-
+        
+        cout << "Instancia " << count << "\n";
+		cout << s(n-1, tw) << "\n\n";
+		
+		count++;
+		
+		duration.clear();
+		score.clear();
+	
     }
-
 
     return 0;
 }

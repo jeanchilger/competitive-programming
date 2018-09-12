@@ -1,5 +1,4 @@
-4
-Texto #3
-abcABC1
-vxpdylY .ph
-vv.xwfxo.fd
+Find the longest common substring
+The substring can be any part of the String
+If there is no common substring, return 0
+The search is case sensitive

@@ -2,40 +2,23 @@
 #include <vector>
 #include <cmath>
 
-using namespace std;
-
-vector<int> cache;
-vector<int> elements;
+vector<int vector<int> > cache; // what is the value for the cache?? (create another cache of bools?)
 vector<int> marked;
+vector<int> elements;
 
-int n, l, h;
-int mks;
-int sum = 0;
+int s(int i, int tw) {
+    if (tw == 0) return 0;
 
-int solve () {
-
-    
 }
+
+using namespace std;
 
 int main () {
 
-    int val;
-
+    int n, l, h;
     cin >> n >> l >> h;
-    cache.assign(n, -1);
+    cache.assign(h+1, vector<int>(n, -1)); // row = capacity; col = elements; -1 = change this value;
 
-    for (int i = 0; i < n; i++) {
-        cin >> val;
-        elements.push_back(val);
-    }
-
-    for (int i = 0; i < n; i++) {
-        cin >> val;
-        marked.push_back(val);
-    }
-
-    mks = 0;
-    cout << solve() << "\n";
 
     return 0;
 }
