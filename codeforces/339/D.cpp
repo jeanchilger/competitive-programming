@@ -28,11 +28,11 @@ int merge(int a, int b, int c) {
      * Combines the two given values of the tree.
      * */
 
-    if (c % 2 == 1) return a | b;
+    if (c % 2 == 0) return a | b;
     else return a ^ b;
 }
 
-void fill(int b, int e, int i, int arr[], int c=0) {
+void fill(int b, int e, int i, int arr[], int c) {
     /*
      * Builds the tree with the intervals and the values.
      * */
@@ -44,8 +44,8 @@ void fill(int b, int e, int i, int arr[], int c=0) {
         return;
     }
 
-    fill(b, (b+e)/2, i*2, arr, c+1);
-    fill((b+e)/2 +1, e, i*2 + 1, arr, c+1);
+    fill(b, (b+e)/2, i*2, arr, c-1);
+    fill((b+e)/2 +1, e, i*2 + 1, arr, c-1);
 
     int x = merge(get<0>(st[2 * i]), get<0>(st[(2 * i) + 1]), c);
     //printf("a : %d   b : %d   c : %d\n", get<0>(st[2 * i]), get<0>(st[(2 * i) + 1]), c);
@@ -53,8 +53,8 @@ void fill(int b, int e, int i, int arr[], int c=0) {
     st[i] = n;
 }
 
-void update(int idx, int newVal, int arr[], int id=1, int c=0) {
-    /*
+void update(int idx, int newVal, int arr[], int c, int id=1) {
+   /*
      * Updates the array in the given position.
      * The intervals of the tree are updated as well.
      * */
@@ -76,11 +76,12 @@ void update(int idx, int newVal, int arr[], int id=1, int c=0) {
     }
 
     if (i <= idx || j >= idx) {
-        update(idx, newVal, arr, 2 * id, c+1);
-        update(idx, newVal, arr, 2 * id + 1, c+1);
+        update(idx, newVal, arr, c-1, 2 * id);
+        update(idx, newVal, arr, c-1, 2 * id + 1);
     }
 
     int v = merge(get<0>(st[2 * id]), get<0>(st[2 * id + 1]), c);
+//    printf("AAAAAAAAAAAAAAAa : %d  c : %d\n", v, c);
     iii m(v, i, j);
     st[id] = m;
 }
@@ -101,7 +102,7 @@ int main() {
         scanf(" %d", &arr[i]);
     }
 
-    fill(1, t, 1, arr);
+    fill(1, t, 1, arr, n+1);
 
 
     //printf("AAAAAAAAA: %d\n", get<0>(st[1]));
@@ -111,7 +112,7 @@ int main() {
 
     for (int i = 0; i < m; i++) {
         scanf(" %d %d", &p, &b);
-        update(p, b, arr);
+        update(p, b, arr, n+1);
         printf("%d\n", get<0>(st[1]));
     }
 
