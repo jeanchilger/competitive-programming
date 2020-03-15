@@ -1,2 +1,2 @@
-# programming-club
-Problemas desenvolvidos no clube de programação da UFFS
+# Competitive Programming
+Problem solving for programming contests.
