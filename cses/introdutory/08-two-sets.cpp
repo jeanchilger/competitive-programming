@@ -10,13 +10,12 @@ int main() {
 
     cin >> n;
 
-    if ((n - 1) * (n / 2) % 2 != 0) {
+    if (((n + 1) * (n / 2)) % 2 != 0) {
         printf("NO\n");
     } else {
+        printf("YES\n");
 
     }
 
     return 0;
 }
-
-11 8 6 5
